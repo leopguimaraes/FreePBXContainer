@@ -3,6 +3,7 @@
 #para proceder com a instalação.
 #Responsável: Leonardo Guimaraes
 #Email: leopguimaraes@gmail.com
+# SERVICO FEDERAL DE PROCESSAMENTO DE DADOS - SERPRO
 set -ex
 
 #Subindo asterisk
