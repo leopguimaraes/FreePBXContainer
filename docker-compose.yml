@@ -1,0 +1,19 @@
+version: "3.3"
+
+# networks:
+#   monitor-net:
+#     driver: host
+
+services:
+  freepbx:
+    image: leopguimaraes/freepbx:testing
+    # expose:
+    #   - 80
+    #   - 5060/udp
+    ports:
+      - 80:80
+      - 443:443
+      - 3306:3306
+      - 5060:5060/udp
+    network_mode: bridge
+    privileged: true
