@@ -16,3 +16,4 @@ services:
       - 3306:3306
       - 5060:5060/udp
     network_mode: bridge
+    privileged: true

@@ -61,7 +61,4 @@ RUN chmod +x /usr/src/freepbx/start.sh
 RUN ./start.sh
 EXPOSE 80 443 3306
 EXPOSE 5060/udp
-RUN apt-get install -y supervisor
-RUN mkdir -p /var/log/supervisor
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-CMD ["supervisord","-c","/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["/sbin/init"]
