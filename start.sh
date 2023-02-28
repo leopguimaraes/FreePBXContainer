@@ -28,5 +28,3 @@ echo "Mysql inicializado"
 #Instalando o freepbx
 echo "Iniciando a instalação do Freepbx"
 /usr/src/freepbx/install -n
-/usr/sbin/fwconsole reload
-/usr/src/freepbx/install --force -n
