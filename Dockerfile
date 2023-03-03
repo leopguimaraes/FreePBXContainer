@@ -12,7 +12,7 @@ asterisk-moh-opsound-g722 asterisk-moh-opsound-wav asterisk-opus \
 asterisk-voicemail dahdi dahdi-dkms dahdi-linux libapache2-mod-security2 \
 php5.6 php5.6-cgi php5.6-cli php5.6-curl php5.6-fpm php5.6-gd php5.6-mbstring \
 php5.6-mysql php5.6-odbc php5.6-xml php5.6-bcmath php-pear libicu-dev gcc \
-g++ make libapache2-mod-php5.6
+g++ make libapache2-mod-php5.6 pkg-config vim
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y postfix
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get install -y nodejs
@@ -56,6 +56,7 @@ RUN wget http://mirror.freepbx.org/modules/packages/freepbx/freepbx-14.0-latest.
 RUN tar zxf freepbx-14.0-latest.tgz
 WORKDIR /usr/src/freepbx
 COPY start.sh /usr/src/freepbx/
+COPY modules.txt /usr/src/freepbx
 RUN sed -i 's/ > \/dev\/tty//g' installlib/installcommand.class.php
 RUN chmod +x /usr/src/freepbx/start.sh
 RUN ./start.sh

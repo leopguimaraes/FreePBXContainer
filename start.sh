@@ -2,7 +2,7 @@
 #Script que vislumbra a instalação do freepbx onde precisa ter os serviços asterisk e mysqld ativos
 #para proceder com a instalação.
 #Responsável: Leonardo Guimaraes
-#Email: leopguimaraes@gmail.com
+#Email: leonardo.guimaraes@serpro.gov.br
 # SERVICO FEDERAL DE PROCESSAMENTO DE DADOS - SERPRO
 # Março de 2023
 set -ex
@@ -28,3 +28,11 @@ echo "Mysql inicializado"
 #Instalando o freepbx
 echo "Iniciando a instalação do Freepbx"
 /usr/src/freepbx/install -n
+sleep 5
+echo "FreePBX Instalado"
+
+#Instalando os módulos do FreePBX
+echo "Instalando módulos para o FreePBX"
+fwconsole moduleadmin listonline
+cat /usr/src/freepbx/modules.txt |xargs fwconsole moduleadmin downloadinstall
+
