@@ -16,4 +16,10 @@ services:
       - 3306:3306
       - 5060:5060/udp
     network_mode: bridge
+    volumes:
+      - asterisk-data:/etc/asterisk
+      - mysql-data:/var/lib/mysql
     privileged: true
+volumes:
+  asterisk-data:
+  mysql-data:
