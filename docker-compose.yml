@@ -20,7 +20,7 @@ services:
       rede-docker: 
     volumes:
       - asterisk-data:/etc/asterisk
-      - ${CONFIG}/freepbx.conf:/etc/freepbx.conf:Z
+      - ${CONFIG}/freepbxcontainer/freepbx.conf:/etc/freepbx.conf:Z
     privileged: true
 
   mysql:
