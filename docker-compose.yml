@@ -13,13 +13,28 @@ services:
     ports:
       - 80:80
       - 443:443
-      - 3306:3306
+      #- 3306:3306
       - 5060:5060/udp
-    network_mode: bridge
+    #network_mode: bridge
+    networks:
+      rede-docker: 
     volumes:
       - asterisk-data:/etc/asterisk
+      - /home/leonardo/freepbx/freepbxcontainer/freepbx.conf:/etc/freepbx.conf:Z
+    privileged: true
+
+  mysql:
+    image: leopguimaraes/freepbx:banco
+    ports:
+      - 3306:3306
+    networks:
+      rede-docker:
+    volumes:
       - mysql-data:/var/lib/mysql
     privileged: true
+
 volumes:
   asterisk-data:
   mysql-data:
+networks:
+  rede-docker:

@@ -1,7 +1,7 @@
 FROM ubuntu:bionic
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install tzdata
-RUN apt install -y software-properties-common apt-utils net-tools
+RUN apt install -y software-properties-common apt-utils net-tools telnet iputils-ping wget
 RUN add-apt-repository ppa:ondrej/php > /dev/null
 RUN apt-get update
 RUN apt-get install -y openssh-server apache2 mysql-server mysql-client \
