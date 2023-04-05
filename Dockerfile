@@ -1,5 +1,5 @@
 FROM ubuntu:bionic
-RUN apt-get update
+RUN apt-get update && apt-get upgrade -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get install tzdata
 RUN apt install -y software-properties-common apt-utils net-tools telnet iputils-ping wget
 RUN add-apt-repository ppa:ondrej/php > /dev/null
@@ -60,6 +60,6 @@ COPY modules.txt /usr/src/freepbx
 RUN sed -i 's/ > \/dev\/tty//g' installlib/installcommand.class.php
 RUN chmod +x /usr/src/freepbx/start.sh
 RUN ./start.sh
-EXPOSE 80 443 3306
+EXPOSE 80 443
 EXPOSE 5060/udp
 CMD ["/sbin/init"]
