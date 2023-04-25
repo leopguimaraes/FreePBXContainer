@@ -1,7 +1,7 @@
 FROM ubuntu:bionic
 RUN apt-get update && apt-get upgrade -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get install tzdata
-RUN apt install -y software-properties-common apt-utils net-tools telnet iputils-ping wget
+RUN apt install -y software-properties-common apt-utils net-tools telnet iputils-ping wget sngrep tcpdump
 RUN add-apt-repository ppa:ondrej/php > /dev/null
 RUN apt-get update
 RUN apt-get install -y openssh-server apache2 mysql-server mysql-client \
@@ -12,7 +12,7 @@ asterisk-moh-opsound-g722 asterisk-moh-opsound-wav asterisk-opus \
 asterisk-voicemail dahdi dahdi-dkms dahdi-linux libapache2-mod-security2 \
 php5.6 php5.6-cgi php5.6-cli php5.6-curl php5.6-fpm php5.6-gd php5.6-mbstring \
 php5.6-mysql php5.6-odbc php5.6-xml php5.6-bcmath php-pear libicu-dev gcc \
-g++ make libapache2-mod-php5.6 pkg-config vim
+g++ make libapache2-mod-php5.6 pkg-config vim fail2ban
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y postfix
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get install -y nodejs
@@ -50,7 +50,8 @@ ARG MARIADB_MYSQL_SOCKET_DIRECTORY='/var/run/mysqld'
 RUN mkdir -p $MARIADB_MYSQL_SOCKET_DIRECTORY && \
     chown root:mysql $MARIADB_MYSQL_SOCKET_DIRECTORY && \
     chmod 774 $MARIADB_MYSQL_SOCKET_DIRECTORY
-
+COPY jail.conf /etc/fail2ban/
+COPY asterisk.conf /etc/fail2ban/filter.d/
 WORKDIR /usr/src
 RUN wget http://mirror.freepbx.org/modules/packages/freepbx/freepbx-14.0-latest.tgz
 RUN tar zxf freepbx-14.0-latest.tgz

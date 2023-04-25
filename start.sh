@@ -36,3 +36,6 @@ echo "Instalando módulos para o FreePBX"
 fwconsole moduleadmin listonline
 cat /usr/src/freepbx/modules.txt |xargs fwconsole moduleadmin downloadinstall
 
+#Subindo o Fail2ban
+echo "Iniciando o serviço fail2ban"
+service fail2ban start
